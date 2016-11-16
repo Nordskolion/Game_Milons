@@ -5,17 +5,16 @@
 
 using namespace sf;
 
-
-Class Hero
+class Hero
 {
 private:
-float hero_x = 500.0;
+float hero_x = 100.0;
 float hero_y = 400.0;
 float alpha = 90.0;
+Sprite heroSprite;
 Image heroImage;
 Texture heroTexture;
-Sprite heroSprite;
-string nameImage;
+std::string nameImage;
 
 float AlphaRecord(float );
 float BorderRecord_X(float );
@@ -25,7 +24,7 @@ float Search_Y(float);
 
 
 public:
-	Hero(string);
+	Hero(std::string);
 	float Hero_x(){return hero_x;}
 	float Hero_y(){return hero_y;}
 	Sprite RetSprite(){return heroSprite;}
@@ -35,4 +34,4 @@ public:
 	void ChangeRotation(float);
 
 
-}
+};

@@ -1,11 +1,11 @@
-#include "Class_hero.h"
+#include "Hero.h"
 using namespace sf;
-Hero::Hero(string name)
+Hero::Hero(std::string name)
 {
 	nameImage = name;
 	heroImage.loadFromFile(nameImage);
-	heroTexture.loadFromImage(heroimage);
-	heroSprite.setTexture(herotexture);
+	heroTexture.loadFromImage(heroImage);
+	heroSprite.setTexture(heroTexture);
 	heroSprite.setPosition(hero_x, hero_y);
 	heroSprite.setRotation(alpha);
 
@@ -22,8 +22,12 @@ void Hero::ChangeRotation(float delta)
 }
 void Hero::Moving_Up()
 {
+
+		std::cout<<" X "<<hero_x<<" Y "<<hero_y<<std::endl;
 	    hero_y=hero_y+Search_Y(alpha);
         hero_x=hero_x+Search_X(alpha);
+        std::cout<<"Search_Y"<<Search_Y(alpha)<<std::endl;
+        std::cout<<"Alpha"<<alpha<<std::endl;
 }
 
 void Hero::Moving_Down()
@@ -40,21 +44,6 @@ void Hero::Moving_Down()
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 float Hero::AlphaRecord(float alpha)
 {
 	if(alpha < 0){alpha=358;}
@@ -62,7 +51,7 @@ float Hero::AlphaRecord(float alpha)
         return alpha;
 }
 
-float Hero::BorderRecordX(float hero_x)
+float Hero::BorderRecord_X(float hero_x)
 {
     if(hero_x >= 799){hero_x=5;}
     if(hero_x <= 0){hero_x=770;}
@@ -70,7 +59,7 @@ float Hero::BorderRecordX(float hero_x)
     return hero_x;
 }
     
-float Hero::BorderRecordY(float hero_x)
+float Hero::BorderRecord_Y(float hero_x)
 {
     std::cout<<hero_x<<"-YBegin"<<std::endl;
     if(hero_x >= 599){hero_x=5;}
@@ -80,15 +69,15 @@ float Hero::BorderRecordY(float hero_x)
 }
 float Hero::Search_X(float  alpha)
 {
-    float x=1;
+    float x=2;
     x = x*cos(alpha*3.14/180);
-    std::cout<<"X-"<<x<<std::endl;
+    // std::cout<<"X-"<<x<<std::endl;
     return x;
 }
 
 float Hero::Search_Y(float  alpha)
 {
-    float y=1;
+    float y=2;
     y = y*sin(alpha*3.14/180);
     return y;
 }

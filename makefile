@@ -4,9 +4,8 @@ all: main.o Hero.o
 	rm *.o 
 
 main.o: ./main.cpp
-	g++ -c -std=c++11 ./main.cpp
+	g++ -c -std=c++11 ./main.cpp -o main.o
 
 
 Hero.o: ./Hero.cpp
-	g++ -c -std=c++11 ./main.cpp
-
+	g++ -c -std=c++11 ./Hero.cpp -o Hero.o

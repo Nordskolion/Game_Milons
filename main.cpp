@@ -51,8 +51,8 @@ int main()
  // // 28#52
  //    float hero_y = 500.0;
  //    float hero_x = 400.0;
-    RenderWindow window(sf::VideoMode(800, 600), "SFML works!");
-    Hero heroShip("./Images/hero.png");
+    RenderWindow window(VideoMode(800, 600), "SFML works!");
+    Hero hero("./Images/hero.png");
 
  //    Image heroimage;
  //    heroimage.loadFromFile("./Images/hero.png");
@@ -75,25 +75,25 @@ int main()
                 window.close();
         }
         if (Keyboard::isKeyPressed(Keyboard::Left)){ 
-            heroShip.ChangeRotation(-1);
+            hero.ChangeRotation(-1);
             
         }
         if (Keyboard::isKeyPressed(Keyboard::Right)){ 
-            heroShip.ChangeRotation(1); 
+            hero.ChangeRotation(1); 
 
 
         }
         if (Keyboard::isKeyPressed(Keyboard::Up)){ 
             //hero_y=BorderRecordY(hero_x=Search_X(hero_x,alpha));
-            heroShip.Moving_Up();
+            hero.Moving_Up();
          }
         if (Keyboard::isKeyPressed(Keyboard::Down)){ 
-            heroShip.Moving_Down();
+            hero.Moving_Down();
         }
 
-        
+        hero.Set_Pos();        
         window.clear();
-        window.draw(heroShip.RetSprite());
+        window.draw(hero.RetSprite());
         window.display();
     }
 
