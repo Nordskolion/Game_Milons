@@ -2,7 +2,8 @@
 #include <iostream>
 #include <math.h>
 #include <string.h>
-
+#include "Bullet.h"
+#include <vector>
 using namespace sf;
 
 class Hero
@@ -15,6 +16,10 @@ Sprite heroSprite;
 Image heroImage;
 Texture heroTexture;
 std::string nameImage;
+Bullet *BULL;
+std::vector<Bullet *> Bullets;
+
+
 
 float AlphaRecord(float );
 float BorderRecord_X(float );
@@ -32,6 +37,9 @@ public:
 	void Moving_Down();
 	void Set_Pos();
 	void ChangeRotation(float);
+	void Shoot();
+
+	void DrawShip(sf::RenderTarget& target);
 
 
 };

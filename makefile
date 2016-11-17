@@ -1,6 +1,6 @@
-all: main.o Hero.o
+all: main.o Hero.o Bullet.o
 	clear
-	g++ main.o Hero.o -o sfml-app -lsfml-graphics -lsfml-window -lsfml-system
+	g++ main.o Hero.o Bullet.o -o sfml-app -lsfml-graphics -lsfml-window -lsfml-system
 	rm *.o 
 
 main.o: ./main.cpp
@@ -9,3 +9,6 @@ main.o: ./main.cpp
 
 Hero.o: ./Hero.cpp
 	g++ -c -std=c++11 ./Hero.cpp -o Hero.o
+
+Bullet.o: ./Bullet.cpp
+	g++ -c -std=c++11 ./Bullet.cpp -o Bullet.o

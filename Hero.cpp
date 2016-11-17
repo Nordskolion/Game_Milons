@@ -36,7 +36,21 @@ void Hero::Moving_Down()
         hero_x=hero_x-Search_X(alpha);
 }
 
+ void Hero::Shoot()
+ {
+ 	  Bullets.push_back(new Bullet(hero_x,hero_y,alpha));
 
+ }
+void Hero::DrawShip(sf::RenderTarget& target)
+{
+	target.draw(heroSprite);
+	       for (int i = 0; i < Bullets.size(); ++i)
+         {
+             Bullets[i]->BulletDraw(target);  /* code */
+            // std::cout<<"PEWPEW--"<<i<<std::endl;
+            // std::cout<<"SIZE --"<<Bullets.size()<<std::endl;
+         }
+}
 
 
 
