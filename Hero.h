@@ -4,6 +4,9 @@
 #include <string.h>
 #include "Bullet.h"
 #include <vector>
+#include "Asteroid.h"
+
+
 using namespace sf;
 
 class Hero
@@ -17,7 +20,10 @@ Image heroImage;
 Texture heroTexture;
 std::string nameImage;
 Bullet *BULL;
+Clock clock;
+float time;
 std::vector<Bullet *> Bullets;
+std::vector<Asteroid *> asteroids;
 
 
 
@@ -38,8 +44,8 @@ public:
 	void Set_Pos();
 	void ChangeRotation(float);
 	void Shoot();
-
+	void AsteroidAdd();
 	void DrawShip(sf::RenderTarget& target);
-
+	void ObjectNear();
 
 };

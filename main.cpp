@@ -3,7 +3,7 @@
 // #include <math.h>
 #include "Hero.h"
 #include <vector>
-
+// #include "Asteroid.h"
 
 
 using namespace sf;
@@ -11,11 +11,15 @@ using namespace sf;
 
 int main()
 {
+    std::vector<Asteroid *> asteroids;
     RenderWindow window(VideoMode(800, 600), "SFML works!");
     Hero hero("./Images/hero.png");
+    // Asteroid asteroid("./Images/Big1.png");
 
     while (window.isOpen())
     {
+
+
         Event event;
         while (window.pollEvent(event))
         {
@@ -23,11 +27,11 @@ int main()
                 window.close();
         }
         if (Keyboard::isKeyPressed(Keyboard::Left)){ 
-            hero.ChangeRotation(-6);
+            hero.ChangeRotation(-3);
             
         }
         if (Keyboard::isKeyPressed(Keyboard::Right)){ 
-            hero.ChangeRotation(6); 
+            hero.ChangeRotation(3); 
 
 
         }
@@ -44,11 +48,19 @@ int main()
             std::cout<<"PEW PEW "<<std::endl;
 
         }
-
+        if (Keyboard::isKeyPressed(Keyboard::L))
+        {
+            hero.AsteroidAdd();
+        }
+        hero.ObjectNear();
         hero.Set_Pos();        
         window.clear();
         // Bullets[0]->BulletDraw(window);
         // Bullets[1]->BulletDraw(window);
+        // asteroid.DrawAst(window);
+
+
+        //UBRAT ASTEROIDI V OTDELNII KLASS !!! VAZNOOOO
         hero.DrawShip(window);
         window.display();
     }

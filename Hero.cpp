@@ -8,6 +8,7 @@ Hero::Hero(std::string name)
 	heroSprite.setTexture(heroTexture);
 	heroSprite.setPosition(hero_x, hero_y);
 	heroSprite.setRotation(alpha);
+    heroSprite.setOrigin(Vector2f(26,14));
 
 }
 void Hero::Set_Pos()
@@ -33,13 +34,19 @@ void Hero::Moving_Up()
 void Hero::Moving_Down()
 {
 	    hero_y=hero_y-Search_Y(alpha);
-        hero_x=hero_x-Search_X(alpha);
+        hero_x=hero_x-Search_X(alpha); 
 }
 
  void Hero::Shoot()
  {
- 	  Bullets.push_back(new Bullet(hero_x,hero_y,alpha));
 
+      // std::cout<<"TIME"<<time<<std::endl;
+      time = clock.getElapsedTime().asMicroseconds();
+      clock.restart();
+      if (time > 40000)
+      { 
+ 	      Bullets.push_back(new Bullet(hero_x,hero_y,alpha));
+      }
  }
 void Hero::DrawShip(sf::RenderTarget& target)
 {
@@ -50,7 +57,55 @@ void Hero::DrawShip(sf::RenderTarget& target)
             // std::cout<<"PEWPEW--"<<i<<std::endl;
             // std::cout<<"SIZE --"<<Bullets.size()<<std::endl;
          }
+
+          for (int i = 0; i < asteroids.size(); ++i)
+        {
+            asteroids[i]->DrawAst(target);
+        }
 }
+
+void Hero::AsteroidAdd()
+{
+
+      std::cout<<"TIME"<<time<<std::endl;
+      time = clock.getElapsedTime().asMicroseconds();
+      clock.restart();
+    if (time > 40000)
+      {
+
+        asteroids.push_back(new Asteroid("./Images/Big1.png"));
+      }
+}
+
+void Hero::ObjectNear()
+{   
+    for (int i = 0; i < Bullets.size(); ++i)
+    {
+        for (int j = 0; j < asteroids.size(); ++j)
+        {
+            // std::cout<<"GETSIZEX"<< asteroids[j]->GetSizeX()<<std::endl;
+            if (abs(Bullets[i]->Get_x() - asteroids[j]->Get_x()) < float(asteroids[j]->GetSizeX())/2 ){
+                    // std::cout<<"POPCHTI"<<std::endl;
+
+             if (abs(Bullets[i]->Get_y() - asteroids[j]->Get_y()) < float(asteroids[j]->GetSizeY())/2 ){
+                // delete asteroids[j];
+                asteroids.erase (asteroids.begin()+j);
+                Bullets.erase (Bullets.begin()+j);
+                std::cout<<"POPADANIE"<<std::endl;
+            }
+            }
+            /* code */
+        }
+        /* code */
+    }
+}
+
+
+
+
+
+
+
 
 
 
@@ -95,3 +150,4 @@ float Hero::Search_Y(float  alpha)
     y = y*sin(alpha*3.14/180);
     return y;
 }
+
