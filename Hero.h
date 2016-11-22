@@ -5,6 +5,7 @@
 #include "Bullet.h"
 #include <vector>
 #include "Asteroid.h"
+#include "Boom.h"
 
 
 using namespace sf;
@@ -24,6 +25,7 @@ Clock clock;
 float time;
 std::vector<Bullet *> Bullets;
 std::vector<Asteroid *> asteroids;
+std::vector<Boom *> Booms;
 
 
 

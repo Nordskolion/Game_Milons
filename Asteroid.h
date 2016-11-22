@@ -19,7 +19,7 @@ private:
 	Vector2<unsigned int> Pixels;
 	std::vector<std::string> nameImages;
 public:
-	Asteroid(std::string);
+	Asteroid(int Percent,int Plused);
 	void DrawAst(sf::RenderTarget&);
 	float Get_x(){return asteroid_x;}
 	float Get_y(){return asteroid_y;}
@@ -29,4 +29,5 @@ public:
 	void  BorderRecord_X();
 	unsigned int GetSizeY(){return Pixels.y;}
 	unsigned int GetSizeX(){return Pixels.x;}
+	char GetImage(){return nameImage[20];}
 };

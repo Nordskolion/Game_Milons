@@ -15,7 +15,10 @@ int main()
     RenderWindow window(VideoMode(800, 600), "SFML works!");
     Hero hero("./Images/hero.png");
     // Asteroid asteroid("./Images/Big1.png");
-
+    Clock clock;
+    float time;
+    float Cooldown = 600000;
+    
     while (window.isOpen())
     {
 
@@ -26,34 +29,44 @@ int main()
             if (event.type == sf::Event::Closed)
                 window.close();
         }
-        if (Keyboard::isKeyPressed(Keyboard::Left)){ 
+        if (Keyboard::isKeyPressed(Keyboard::Left)) {
             hero.ChangeRotation(-3);
-            
+
         }
-        if (Keyboard::isKeyPressed(Keyboard::Right)){ 
-            hero.ChangeRotation(3); 
+        if (Keyboard::isKeyPressed(Keyboard::Right)) {
+            hero.ChangeRotation(3);
 
 
         }
-        if (Keyboard::isKeyPressed(Keyboard::Up)){ 
+        if (Keyboard::isKeyPressed(Keyboard::Up)) {
             //hero_y=BorderRecordY(hero_x=Search_X(hero_x,alpha));
             hero.Moving_Up();
-         }
-        if (Keyboard::isKeyPressed(Keyboard::Down)){ 
+        }
+        if (Keyboard::isKeyPressed(Keyboard::Down)) {
             hero.Moving_Down();
         }
-        if (Keyboard::isKeyPressed(Keyboard::H)){
+        if (Keyboard::isKeyPressed(Keyboard::Space)) {
             //SOSAT EPTI!
             hero.Shoot();
-            std::cout<<"PEW PEW "<<std::endl;
+            std::cout << "PEW PEW " << std::endl;
 
         }
-        if (Keyboard::isKeyPressed(Keyboard::L))
+        time = clock.getElapsedTime().asMicroseconds();
+        // std::cout<<time<<" -- TIME"<<"   Cooldown -- "<<Cooldown<<std::endl;
+        if (/*Keyboard::isKeyPressed(Keyboard::L) ||*/ time > Cooldown)
         {
             hero.AsteroidAdd();
+            if (Cooldown > 1000)
+            {
+                   Cooldown = Cooldown - 1000;   /* code */
+            }
+
+            clock.restart();
         }
+
         hero.ObjectNear();
-        hero.Set_Pos();        
+
+        hero.Set_Pos();
         window.clear();
         // Bullets[0]->BulletDraw(window);
         // Bullets[1]->BulletDraw(window);
