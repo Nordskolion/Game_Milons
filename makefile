@@ -1,6 +1,6 @@
 all: main.o Hero.o Bullet.o Asteroid.o Boom.o
 	clear
-	g++ main.o Hero.o Bullet.o Asteroid.o Boom.o -o sfml-app -lsfml-graphics -lsfml-window -lsfml-system 
+	g++ main.o Hero.o Bullet.o Asteroid.o Boom.o -o sfml-app -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
 	rm *.o 
 
 main.o: ./main.cpp
@@ -14,5 +14,6 @@ Bullet.o: ./Bullet.cpp
 
 Asteroid.o: ./Asteroid.cpp
 	g++ -c -std=c++11 ./Asteroid.cpp -o Asteroid.o
+
 Boom.o: ./Boom.cpp
 	g++ -c -std=c++11 ./Boom.cpp -o Boom.o

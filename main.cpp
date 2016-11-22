@@ -29,11 +29,11 @@ int main()
             if (event.type == sf::Event::Closed)
                 window.close();
         }
-        if (Keyboard::isKeyPressed(Keyboard::Left)) {
+        if ((Keyboard::isKeyPressed(Keyboard::Left) || (Keyboard::isKeyPressed(Keyboard::Q)))) {
             hero.ChangeRotation(-3);
 
         }
-        if (Keyboard::isKeyPressed(Keyboard::Right)) {
+        if ((Keyboard::isKeyPressed(Keyboard::Right) || (Keyboard::isKeyPressed(Keyboard::E)))) {
             hero.ChangeRotation(3);
 
 
@@ -48,7 +48,7 @@ int main()
         if (Keyboard::isKeyPressed(Keyboard::Space)) {
             //SOSAT EPTI!
             hero.Shoot();
-            std::cout << "PEW PEW " << std::endl;
+            // std::cout << "PEW PEW " << std::endl;
 
         }
         time = clock.getElapsedTime().asMicroseconds();
@@ -64,8 +64,9 @@ int main()
             clock.restart();
         }
 
-        hero.ObjectNear();
 
+        hero.Moving_Up();
+        hero.ObjectNear();
         hero.Set_Pos();
         window.clear();
         // Bullets[0]->BulletDraw(window);

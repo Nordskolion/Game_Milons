@@ -15,6 +15,8 @@ private:
 	Image asteroidImage;
 	Texture asteroidTexture;
 	std::string nameImage;
+	Clock clock;
+	float time;
 	// std::vector<std::string> Images;
 	Vector2<unsigned int> Pixels;
 	std::vector<std::string> nameImages;
@@ -30,4 +32,5 @@ public:
 	unsigned int GetSizeY(){return Pixels.y;}
 	unsigned int GetSizeX(){return Pixels.x;}
 	char GetImage(){return nameImage[20];}
+	void AsteroidBoom();
 };

@@ -9,6 +9,11 @@ Hero::Hero(std::string name)
     heroSprite.setPosition(hero_x, hero_y);
     heroSprite.setRotation(alpha);
     heroSprite.setOrigin(Vector2f(26, 14));
+    music.openFromFile("./Images/media/musics/theme.ogg");
+    music.play();
+    shootBuffer.loadFromFile("./Images/media/sounds/laser1.ogg");
+    shoot.setBuffer(shootBuffer);
+
 
 }
 void Hero::Set_Pos()
@@ -43,16 +48,20 @@ void Hero::Shoot()
 {
 
     // std::cout<<"TIME"<<time<<std::endl;
-    time = clock.getElapsedTime().asMicroseconds();
-    clock.restart();
-    if (time > 40000)
+    shootCD = clockShoot.getElapsedTime().asMicroseconds();
+    if (shootCD >500000)
     {
+        clockShoot.restart();
+        shoot.play();
         Bullets.push_back(new Bullet(hero_x, hero_y, alpha));
     }
 }
 void Hero::DrawShip(sf::RenderTarget& target)
 {
-    target.draw(heroSprite);
+    if (life > 0)
+    {
+        target.draw(heroSprite);   /* code */
+    }
     for (int i = 0; i < Bullets.size(); ++i)
     {
         Bullets[i]->BulletDraw(target);  /* code */
@@ -66,7 +75,7 @@ void Hero::DrawShip(sf::RenderTarget& target)
     }
     for (int i = 0; i < Booms.size(); ++i)
     {
-        std::cout << " Booms cicle : " << Booms[i]->Get_Status() << std::endl;
+        // std::cout << " Booms cicle : " << Booms[i]->Get_Status() << std::endl;
         if (Booms[i]->Get_Status())
         {
             Booms[i]->BoomDraw(target);
@@ -95,8 +104,42 @@ void Hero::AsteroidAdd()
 void Hero::ObjectNear()
 {
     bool ifCollision = false;
+    lifetime = lifecloack.getElapsedTime().asMicroseconds();
+
+
     for (int j = 0; j < asteroids.size(); ++j)
     {
+
+        for (int i = 0; i < asteroids.size(); ++i)
+        {
+            if (abs(asteroids[i]->Get_x() - asteroids[j]->Get_x()) < float(asteroids[j]->GetSizeX()) / 2 + asteroids[i]->GetSizeX() / 2) {
+                if (abs(asteroids[i]->Get_y() - asteroids[j]->Get_y()) < float(asteroids[j]->GetSizeY()) / 2 + asteroids[i]->GetSizeY() / 2) {
+                    asteroids[i]->AsteroidBoom();
+                    asteroids[j]->AsteroidBoom();   
+
+                }
+
+            }
+            /* code */
+        }
+
+
+
+
+        if (abs(hero_x - asteroids[j]->Get_x()) < float(asteroids[j]->GetSizeX()) / 2) {
+            if (abs(hero_y - asteroids[j]->Get_y()) < float(asteroids[j]->GetSizeY()) / 2 ) {
+                if (lifetime > 1000000)
+                {
+                    lifecloack.restart();
+                    life = life - 1;    /* code */
+
+                }
+
+
+            }
+        }
+
+
         for (int i = 0; i < Bullets.size(); ++i)
         {
             // std::cout<<"GETSIZEX"<< asteroids[j]->GetSizeX()<<std::endl;
@@ -109,8 +152,9 @@ void Hero::ObjectNear()
                         asteroids.push_back(new Asteroid(2, 4));
                     }
 
-                    Booms.push_back(new Boom(asteroids[j]->Get_x(), asteroids[j]->Get_y()));
+                    // Booms.push_back(new Boom(asteroids[j]->Get_x(), asteroids[j]->Get_y()));
                     asteroids.erase (asteroids.begin() + j);
+                    asteroidScore ++;
                     asteroids.shrink_to_fit();
                     Bullets.erase (Bullets.begin() + i);
                     Bullets.shrink_to_fit();
@@ -176,3 +220,6 @@ float Hero::Search_Y(float  alpha)
     y = y * sin(alpha * 3.14 / 180);
     return y;
 }
+
+
+// bool Hero::TouchedAsteroids(int x,int y, asteroids*)

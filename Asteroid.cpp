@@ -5,9 +5,42 @@ using namespace sf;
 Asteroid::Asteroid(int Percent, int Plused)
 {
 	// std::cout<<"ETO KRUTO"<<Images[0]<<"<----IMAGES     nameIMage----->"<<nameImage<<std::endl;
-	asteroid_x = rand() % 800;
-	asteroid_y = rand() % 600;
-	alpha = rand() % 360;
+	int randomize = rand() % 4 + 1;
+	// std::cout << "TO SAMOE CHISLO    " << randomize << std::endl;
+	if (randomize == 1)
+	{
+		asteroid_x = -(rand() % 59) - 40;
+		asteroid_y = rand() % 600;
+		alpha = rand() % 360;
+
+		/* code */
+	}
+	if (randomize == 2)
+	{
+		asteroid_x = rand() % 59 + 850;
+		asteroid_y = rand() % 600;
+		alpha = rand() % 360;
+
+		/* code */
+	}
+
+	if (randomize == 3)
+	{
+		asteroid_x = rand() % 800;
+		asteroid_y = - rand() % 59 - 40;
+		alpha = rand() % 360;
+
+		/* code */
+	}
+	if (randomize == 4)
+	{
+		asteroid_x = rand() % 800;
+		asteroid_y = rand() % 59 + 640;
+		alpha = rand() % 360;
+
+		/* code */
+	}
+
 
 
 	nameImages.push_back("Images/media/Meteor/Big1.png");
@@ -49,6 +82,22 @@ void Asteroid::DrawAst(sf::RenderTarget& target)
 }
 
 
+
+void Asteroid::AsteroidBoom()
+{
+	time = clock.getElapsedTime().asMicroseconds();
+
+	if (time > 30000000)
+	{
+		clock.restart();
+		alpha = alpha + 180;
+	}
+}
+
+
+
+
+
 float Asteroid::Search_X(float  alpha)
 {
 	float x = 1;
@@ -67,15 +116,15 @@ float Asteroid::Search_Y(float  alpha)
 
 void Asteroid::BorderRecord_X()
 {
-	if (asteroid_x >= 860) {alpha = 180 - alpha;}
-	if (asteroid_x <= -50) {alpha = alpha - 90 ;}
+	if (asteroid_x >= 900) {alpha = 180 - alpha;}
+	if (asteroid_x <= -100) {alpha = alpha - 90 ;}
 	// std::cout<<hero_x<<"-X"<<std::endl;
 }
 
 void Asteroid::BorderRecord_Y()
 {
 	// std::cout<<hero_x<<"-YBegin"<<std::endl;
-	if (asteroid_y >= 660) {alpha = alpha - 90;}
-	if (asteroid_y <= -50) {alpha = alpha - 90;}
+	if (asteroid_y >= 710) {alpha = alpha - 90;}
+	if (asteroid_y <= -100) {alpha = alpha - 90;}
 	// std::cout<<hero_x<<"-Y"<<std::endl;
 }
