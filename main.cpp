@@ -22,11 +22,16 @@ int main()
     bool gameEnd = false;
     Font font;
     font.loadFromFile("./Images/media/font/trs-million.ttf");
+    Text life("", font, 20);
     Text text("", font, 20);
     // text.setColor();
     text.setStyle(sf::Text::Bold);
     text.setPosition(200,150);
     text.setCharacterSize(80);
+    life.setStyle(Text::Bold);
+    life.setCharacterSize(20);
+    life.setPosition(0,0);
+    life.setString("Life:"+std::to_string(hero.Lifes()));
     while (window.isOpen())
     {
 
@@ -81,11 +86,11 @@ int main()
 
         window.clear();
 
-        if (hero.GameEnd()) 
+        if (hero.GameEnd())     
         {
 
             window.draw(text);
-            std::cout<<"MY SCORE"<<hero.Score()<<std::endl;
+            // std::cout<<"MY SCORE"<<hero.Score()<<std::endl;
         }
         // Bullets[0]->BulletDraw(window);
         // Bullets[1]->BulletDraw(window);
@@ -93,7 +98,9 @@ int main()
         if (!hero.GameEnd())
         {
             text.setString("GAME OVER\nYOUR SCORE:"+std::to_string(hero.Score()));
+            life.setString("Life:"+std::to_string(hero.Lifes()));
             hero.DrawShip(window);
+            window.draw(life);
         }
         //UBRAT ASTEROIDI V OTDELNII KLASS !!! VAZNOOOO
         window.display();

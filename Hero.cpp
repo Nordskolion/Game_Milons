@@ -15,10 +15,11 @@ Hero::Hero(std::string name)
     shoot.setBuffer(shootBuffer);
 
 
+
 }
 void Hero::Set_Pos()
 {
-    heroSprite.setPosition(hero_x, hero_y);
+    heroSprite.setPosition(hero_x, hero_y); 
     heroSprite.setRotation(alpha);
 }
 void Hero::ChangeRotation(float delta)
@@ -49,7 +50,7 @@ void Hero::Shoot()
 
     // std::cout<<"TIME"<<time<<std::endl;
     shootCD = clockShoot.getElapsedTime().asMicroseconds();
-    if (shootCD >500000)
+    if (shootCD > 500000)
     {
         clockShoot.restart();
         shoot.play();
@@ -58,11 +59,9 @@ void Hero::Shoot()
 }
 void Hero::DrawShip(sf::RenderTarget& target)
 {
-    if (life > 0)
-    {
-        target.draw(heroSprite);  /* code */
-        
-    }
+
+
+
     for (int i = 0; i < Bullets.size(); ++i)
     {
         Bullets[i]->BulletDraw(target);  /* code */
@@ -86,6 +85,12 @@ void Hero::DrawShip(sf::RenderTarget& target)
             Booms.shrink_to_fit();
 
         }
+    }
+    
+    if (life > 0)
+    {
+        target.draw(heroSprite);  /* code */
+        // target.draw(text);
     }
 }
 
@@ -116,7 +121,7 @@ void Hero::ObjectNear()
             if (abs(asteroids[i]->Get_x() - asteroids[j]->Get_x()) < float(asteroids[j]->GetSizeX()) / 2 + asteroids[i]->GetSizeX() / 2) {
                 if (abs(asteroids[i]->Get_y() - asteroids[j]->Get_y()) < float(asteroids[j]->GetSizeY()) / 2 + asteroids[i]->GetSizeY() / 2) {
                     asteroids[i]->AsteroidBoom();
-                    asteroids[j]->AsteroidBoom();   
+                    asteroids[j]->AsteroidBoom();
 
                 }
 
@@ -133,6 +138,7 @@ void Hero::ObjectNear()
                 {
                     lifecloack.restart();
                     life = life - 1;    /* code */
+                    // text.setString("Life:" + std::to_string(life));
 
                 }
 
@@ -171,7 +177,7 @@ void Hero::ObjectNear()
 
 bool Hero::GameEnd()
 {
-    if(life == 0)
+    if (life == 0)
     {
         return true;
     }
