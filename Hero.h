@@ -41,6 +41,13 @@ std::vector<Asteroid *> asteroids;
 std::vector<Boom *> Booms;
 
 
+Font font;
+font.loadFromFile("./Images/media/font/trs-million.ttf");
+text.setStyle(sf::Text::Bold);
+// text.setPosition(200,150);
+text.setCharacterSize(20);
+
+
 
 float AlphaRecord(float );
 float BorderRecord_X(float );
@@ -63,5 +70,6 @@ public:
 	void AsteroidAdd();
 	void DrawShip(sf::RenderTarget& target);
 	void ObjectNear();
-
+	bool GameEnd();
+	int Score(){return asteroidScore;}
 };

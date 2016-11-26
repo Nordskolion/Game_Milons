@@ -60,7 +60,8 @@ void Hero::DrawShip(sf::RenderTarget& target)
 {
     if (life > 0)
     {
-        target.draw(heroSprite);   /* code */
+        target.draw(heroSprite);  /* code */
+        
     }
     for (int i = 0; i < Bullets.size(); ++i)
     {
@@ -168,7 +169,14 @@ void Hero::ObjectNear()
     }
 }
 
-
+bool Hero::GameEnd()
+{
+    if(life == 0)
+    {
+        return true;
+    }
+    return false;
+}
 
 
 

@@ -3,6 +3,7 @@
 // #include <math.h>
 #include "Hero.h"
 #include <vector>
+// #include <Text.hpp>
 // #include "Asteroid.h"
 
 
@@ -18,7 +19,14 @@ int main()
     Clock clock;
     float time;
     float Cooldown = 600000;
-    
+    bool gameEnd = false;
+    Font font;
+    font.loadFromFile("./Images/media/font/trs-million.ttf");
+    Text text("", font, 20);
+    // text.setColor();
+    text.setStyle(sf::Text::Bold);
+    text.setPosition(200,150);
+    text.setCharacterSize(80);
     while (window.isOpen())
     {
 
@@ -58,26 +66,42 @@ int main()
             hero.AsteroidAdd();
             if (Cooldown > 1000)
             {
-                   Cooldown = Cooldown - 1000;   /* code */
+                Cooldown = Cooldown - 1000;   /* code */
             }
 
             clock.restart();
         }
 
+        if (!hero.GameEnd())
+        {
+            hero.Moving_Up();
+            hero.ObjectNear();
+            hero.Set_Pos();
+        }
 
-        hero.Moving_Up();
-        hero.ObjectNear();
-        hero.Set_Pos();
         window.clear();
+
+        if (hero.GameEnd()) 
+        {
+
+            window.draw(text);
+            std::cout<<"MY SCORE"<<hero.Score()<<std::endl;
+        }
         // Bullets[0]->BulletDraw(window);
         // Bullets[1]->BulletDraw(window);
         // asteroid.DrawAst(window);
-
-
+        if (!hero.GameEnd())
+        {
+            text.setString("GAME OVER\nYOUR SCORE:"+std::to_string(hero.Score()));
+            hero.DrawShip(window);
+        }
         //UBRAT ASTEROIDI V OTDELNII KLASS !!! VAZNOOOO
-        hero.DrawShip(window);
         window.display();
     }
+
+
+
+
 
     return 0;
 }
