@@ -70,7 +70,7 @@ Asteroid::Asteroid(int Percent, int Plused)
 }
 
 
-void Asteroid::DrawAst(sf::RenderTarget& target)
+void Asteroid::DrawAst(sf::RenderTarget* target)
 {
 	BorderRecord_Y();
 	BorderRecord_X();
@@ -78,7 +78,7 @@ void Asteroid::DrawAst(sf::RenderTarget& target)
 	asteroid_x = asteroid_x + Search_X(alpha);
 
 	asteroidSprite.setPosition(asteroid_x, asteroid_y);
-	target.draw(asteroidSprite);
+	target->draw(asteroidSprite);
 }
 
 

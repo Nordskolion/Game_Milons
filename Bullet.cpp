@@ -15,10 +15,10 @@ Bullet::Bullet(float x, float y, float alpha)
 }
 
 
-void Bullet::BulletDraw(sf::RenderTarget& target)
+void Bullet::BulletDraw(sf::RenderTarget* target)
 {
 	bullet_x = bullet_x + dx;
 	bullet_y = bullet_y + dy;
 	heroSprite.setPosition(bullet_x, bullet_y);
-	target.draw(heroSprite);
+	target->draw(heroSprite);
 }

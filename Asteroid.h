@@ -22,7 +22,7 @@ private:
 	std::vector<std::string> nameImages;
 public:
 	Asteroid(int Percent,int Plused);
-	void DrawAst(sf::RenderTarget&);
+	void DrawAst(sf::RenderTarget*);
 	float Get_x(){return asteroid_x;}
 	float Get_y(){return asteroid_y;}
 	float Search_X(float);

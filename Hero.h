@@ -60,7 +60,7 @@ public:
 	void ChangeRotation(float);
 	void Shoot();
 	void AsteroidAdd();
-	void DrawShip(sf::RenderTarget& target);
+	void DrawShip(sf::RenderTarget* target);
 	void ObjectNear();
 	bool GameEnd();
 	int Score() {return asteroidScore;}

@@ -28,6 +28,6 @@ private:
 public:
 	Boom(float x1,float y1);
 	bool Get_Status(){return End;}
-	bool BoomDraw(sf::RenderTarget& target);
+	bool BoomDraw(sf::RenderTarget* target);
 
 };

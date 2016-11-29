@@ -13,20 +13,21 @@ Hero::Hero(std::string name)
     music.play();
     shootBuffer.loadFromFile("./Images/media/sounds/laser1.ogg");
     shoot.setBuffer(shootBuffer);
-
-
-
 }
+
+
 void Hero::Set_Pos()
 {
     heroSprite.setPosition(hero_x, hero_y); 
     heroSprite.setRotation(alpha);
 }
+
 void Hero::ChangeRotation(float delta)
 {
     alpha = AlphaRecord(alpha + delta);
     // heroSprite.setRotation(alpha);
 }
+
 void Hero::Moving_Up()
 {
 
@@ -57,7 +58,7 @@ void Hero::Shoot()
         Bullets.push_back(new Bullet(hero_x, hero_y, alpha));
     }
 }
-void Hero::DrawShip(sf::RenderTarget& target)
+void Hero::DrawShip(sf::RenderTarget* target)
 {
 
 
@@ -89,7 +90,7 @@ void Hero::DrawShip(sf::RenderTarget& target)
     
     if (life > 0)
     {
-        target.draw(heroSprite);  /* code */
+        target->draw(heroSprite);  /* code */
         // target.draw(text);
     }
 }
