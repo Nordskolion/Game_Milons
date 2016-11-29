@@ -15,10 +15,10 @@ int main()
 {
     std::cout << "HELO WORLD" << std::endl;
     Game game("WUT");
-    while (true)
-    {
-        game.Init();
-    }
+    // while (true)
     
+        game.Init();
+    
+
     return 0;
 }
