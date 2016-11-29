@@ -14,21 +14,18 @@ class Hero
 {
 private:
 
-	SoundBuffer shootBuffer;
-	Music music;
-	Sound shoot;
+	
 
 	float hero_x = 100.0;
 	float hero_y = 400.0;
 	float alpha = 90.0;
-	int life = 3;
-	int asteroidScore = 0;
 	Sprite heroSprite;
 	Image heroImage;
 	Texture heroTexture;
 	std::string nameImage;
 	Bullet *BULL;
 	Clock clock;
+	int asteroidScore = 0; 
 	Clock clockShoot;
 	float shootCD;
 	Clock lifecloack;
@@ -36,9 +33,9 @@ private:
 	float timeScore;
 	float lifetime;
 	float time;
-	std::vector<Bullet *> Bullets;
-	std::vector<Asteroid *> asteroids;
-	std::vector<Boom *> Booms;
+	// std::vector<Bullet *> Bullets;
+	// std::vector<Asteroid *> asteroids;
+	// std::vector<Boom *> Booms;
 
 
 	float AlphaRecord(float );
@@ -50,18 +47,20 @@ private:
 
 
 public:
+	int life = 3;
 	Hero(std::string);
 	float Hero_x() {return hero_x;}
 	float Hero_y() {return hero_y;}
+	float Hero_A() {return alpha;}
 	Sprite RetSprite() {return heroSprite;}
 	void Moving_Up();
 	void Moving_Down();
 	void Set_Pos();
 	void ChangeRotation(float);
-	void Shoot();
-	void AsteroidAdd();
-	void DrawShip(sf::RenderTarget* target);
-	void ObjectNear();
+	// void Shoot();
+	// void AsteroidAdd();
+	void Draw(sf::RenderTarget* target);
+	// void ObjectNear();
 	bool GameEnd();
 	int Score() {return asteroidScore;}
 	int Lifes(){return life;}
