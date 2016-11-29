@@ -1,14 +1,17 @@
 #include "Hero.h"
 using namespace sf;
-Hero::Hero(std::string name)
+Hero::Hero(std::string name, float x, float y)
 {
+    hero_x = x;
+    hero_y = y;
     nameImage = name;
     heroImage.loadFromFile(nameImage);
     heroTexture.loadFromImage(heroImage);
     heroSprite.setTexture(heroTexture);
     heroSprite.setPosition(hero_x, hero_y);
     heroSprite.setRotation(alpha);
-    heroSprite.setOrigin(Vector2f(26, 14));
+    heroSprite.setOrigin(Vector2f(18, 18));
+    heroSprite.setScale(36/heroSprite.getLocalBounds().width, 36/heroSprite.getLocalBounds().height);
 }
 
 

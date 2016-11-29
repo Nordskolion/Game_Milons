@@ -48,7 +48,7 @@ private:
 
 public:
 	int life = 3;
-	Hero(std::string);
+	Hero(std::string, float x, float y);
 	float Hero_x() {return hero_x;}
 	float Hero_y() {return hero_y;}
 	float Hero_A() {return alpha;}
@@ -57,6 +57,8 @@ public:
 	void Moving_Down();
 	void Set_Pos();
 	void ChangeRotation(float);
+	float GetSizeX() {return heroImage.getSize().x;}
+	float GetSizeY() {return heroImage.getSize().x;}
 	// void Shoot();
 	// void AsteroidAdd();
 	void Draw(sf::RenderTarget* target);

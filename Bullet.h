@@ -16,10 +16,11 @@ private:
 	float Search_X(float);
 	float Search_Y(float);
 public:
-	Bullet(float x, float y, float alpha);
+	Bullet(float x, float y, float alpha, std::string Img);
 	void BulletDraw(sf::RenderTarget* target);
 	float Get_x() {return bullet_x;}
 	float Get_y() {return bullet_y;}
-
+	float GetSizeX(){return heroImage.getSize().x;}
+	float GetSizeY(){return heroImage.getSize().y;}
 };
 
