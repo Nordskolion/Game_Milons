@@ -13,11 +13,9 @@ using namespace sf;
 
 int main()
 {
-    std::cout << "HELO WORLD" << std::endl;
+    // std::cout << "HELO WORLD" << std::endl;
     Game game("WUT");
-    // while (true)
-    
-        game.Init();
+    game.Init();
     
 
     return 0;

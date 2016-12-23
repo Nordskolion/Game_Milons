@@ -10,8 +10,8 @@ Hero::Hero(std::string name, float x, float y)
     heroSprite.setTexture(heroTexture);
     heroSprite.setPosition(hero_x, hero_y);
     heroSprite.setRotation(alpha);
-    heroSprite.setOrigin(Vector2f(18, 18));
     heroSprite.setScale(36/heroSprite.getLocalBounds().width, 36/heroSprite.getLocalBounds().height);
+    heroSprite.setOrigin(Vector2f(18, 18));
 }
 
 

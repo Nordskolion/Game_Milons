@@ -1,7 +1,6 @@
 all: main.o Hero.o Bullet.o Asteroid.o Boom.o Game.o
 	clear
 	g++ main.o Hero.o Bullet.o Game.o Asteroid.o Boom.o -o sfml-app -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
-	
 	rm *.o
 
 main.o: ./main.cpp
